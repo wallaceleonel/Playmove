@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace CompanhiaProvisorApi.Models
 {
@@ -13,8 +14,8 @@ namespace CompanhiaProvisorApi.Models
         public int Document { get; set; }
         public DateTime DateCredential { get; set; }
 
-        public Company Company { get; set; }
-
+        [JsonIgnore]
+        public Company? Company { get; set; }
         public int CompanyId { get; set; }
 
     }
