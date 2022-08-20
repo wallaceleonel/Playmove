@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CompanhiaProvisorApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CompanhiaProvisorApi.Data
 {
@@ -8,5 +9,7 @@ namespace CompanhiaProvisorApi.Data
         {
 
         }
+        public DbSet<Company> Companys { get; set; }
+        public DbSet<Provider> Providers { get; set; }
     }
 }
