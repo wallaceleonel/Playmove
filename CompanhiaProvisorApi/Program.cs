@@ -1,18 +1,17 @@
-using CompanhiaProvisorApi.Models;
+using CompanhiaProvisorApi.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the Data base
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-builder.Services.AddDbContext<_DbContext>(x => x.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
-
-builder.Services.AddScoped<IProvider,Provider>();
-builder.Services.AddScoped<ICompany, Company();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
