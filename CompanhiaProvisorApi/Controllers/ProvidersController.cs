@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CompanhiaProvisorApi.Data;
 using CompanhiaProvisorApi.Models;
@@ -21,7 +16,12 @@ namespace CompanhiaProvisorApi.Controllers
             _context = context;
         }
 
-        // GET: api/Providers
+        /// <summary>
+        /// Buscar todos os fornecedores  disponíveis.
+        /// </summary>  
+        /// <returns>Retorna todos os fornecedores  disponíveis. </returns>
+        /// <response code="200">Retorna todaos os fornecedores  disponíveis. </response>
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Provider>>> GetProviders()
         {
@@ -32,7 +32,12 @@ namespace CompanhiaProvisorApi.Controllers
             return await _context.Providers.ToListAsync();
         }
 
-        // GET: api/Providers
+        /// <summary>
+        /// Buscar  o fornecedoror  atraves do ID.
+        /// </summary>  
+        /// <returns>Retorna fornecedor atraves pelo ID. </returns>
+        /// <response code="200">Retorna fornecedor do ID informado. </response>
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<Provider>> GetProvider(int id)
         {
@@ -50,7 +55,12 @@ namespace CompanhiaProvisorApi.Controllers
             return provider;
         }
 
-        // PUT: api/Providers
+        /// <summary>
+        /// Edita  fornecedor informando o ID.
+        /// </summary>  
+        /// <returns>Retorna edição do fornecedor.</returns>
+        /// <response code="200">Retorna dados do fornecedor atualizado.</response>
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProvider(int id, Provider provider)
         {
@@ -80,7 +90,12 @@ namespace CompanhiaProvisorApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Providers
+        /// <summary>
+        /// Insere dados  para cadastro do fornecedor.
+        /// </summary>  
+        /// <returns>Retorna dados do fornecedor cadastrado. </returns>
+        /// <response code="200">Retorna dados do fornecedor cadastrado. </response>
+
         [HttpPost]
         public async Task<ActionResult<Provider>> PostProvider(Provider provider)
         {
@@ -94,7 +109,12 @@ namespace CompanhiaProvisorApi.Controllers
             return CreatedAtAction("GetProvider", new { id = provider.Id }, provider);
         }
 
-        // DELETE: api/Providers
+        /// <summary>
+        /// Deleta dados do fornecedor.
+        /// </summary>  
+        /// <returns>Retorna aviso de remoção dos dados do fornecedor.</returns>
+        /// <response code="200">Retorna aviso de status de remoção de dados do fornecedor.</response>
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProvider(int id)
         {
