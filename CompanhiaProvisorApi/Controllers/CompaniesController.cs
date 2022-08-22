@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CompanhiaProvisorApi.Data;
 using CompanhiaProvisorApi.Models;
+using System.Net;
 
 namespace CompanhiaProvisorApi.Controllers
 {
@@ -21,7 +22,12 @@ namespace CompanhiaProvisorApi.Controllers
             _context = context;
         }
 
-        // GET: api/Companies
+        /// <summary>
+        /// Buscar todas as companhias  disponíveis.
+        /// </summary>  
+        /// <returns>Retorna todas as companhias  disponíveis</returns>
+        /// <response code="200">Retorna todas as companhias  disponíveis</response>
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Company>>> GetCompanys()
         {
@@ -32,7 +38,12 @@ namespace CompanhiaProvisorApi.Controllers
             return await _context.Companys.ToListAsync();
         }
 
-        // GET: api/Companies/5
+        /// <summary>
+        /// Buscar todas as companhias  disponíveis pelo ID.
+        /// </summary>  
+        /// <returns>Retorna todas as companhias  disponíveis</returns>
+        /// <response code="200">Retorna todas as companhias  disponíveis</response>
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
@@ -50,8 +61,12 @@ namespace CompanhiaProvisorApi.Controllers
             return company;
         }
 
-        // PUT: api/Companies/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Edita  companhia informando o ID .
+        /// </summary>  
+        /// <returns>Retorna edição da companhia</returns>
+        /// <response code="200">Retorna dados da companhia atualizado</response>
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCompany(int id, Company company)
         {
@@ -81,8 +96,12 @@ namespace CompanhiaProvisorApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Companies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Insere dados  para cadastro de  companhia.
+        /// </summary>  
+        /// <returns>Retorna dados da  companhia cadastrada. </returns>
+        /// <response code="200">Retorna dados da  companhia  cadastrada. </response>
+        
         [HttpPost]
         public async Task<ActionResult<Company>> PostCompany(Company company)
         {
@@ -96,7 +115,12 @@ namespace CompanhiaProvisorApi.Controllers
             return CreatedAtAction("GetCompany", new { id = company.Id }, company);
         }
 
-        // DELETE: api/Companies/5
+        /// <summary>
+        /// Deleta dados da companhia.
+        /// </summary>  
+        /// <returns>Retorna aviso de remoção dos dados.</returns>
+        /// <response code="200">Retorna aviso de status de remoção de dados.</response>
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {

@@ -32,7 +32,7 @@ namespace CompanhiaProvisorApi.Controllers
             return await _context.Providers.ToListAsync();
         }
 
-        // GET: api/Providers/
+        // GET: api/Providers
         [HttpGet("{id}")]
         public async Task<ActionResult<Provider>> GetProvider(int id)
         {
@@ -50,7 +50,7 @@ namespace CompanhiaProvisorApi.Controllers
             return provider;
         }
 
-        // PUT: api/Providers/
+        // PUT: api/Providers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProvider(int id, Provider provider)
         {
@@ -94,7 +94,7 @@ namespace CompanhiaProvisorApi.Controllers
             return CreatedAtAction("GetProvider", new { id = provider.Id }, provider);
         }
 
-        // DELETE: api/Providers/
+        // DELETE: api/Providers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProvider(int id)
         {
