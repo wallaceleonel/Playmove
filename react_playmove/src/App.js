@@ -1,34 +1,43 @@
 import './App.css';
-import api from '.api';
-import { Component } from 'react';
+import React, {useState, useEffect} from 'react';
+function App(){
 
-class App extends Component{
+  const baseUrl = 'https://localhost:44303/api/Providers';
 
-  state= {
-
-    Fornecedores: [],
+  const [data,setData]=useState([]);
+  
+  const fornecedoresGet = async() =>{
+      await axios.get(baseUrl)
+      .then(response =>{
+          setData(response.data);
+      }).catch(error =>{
+          console.log(error);
+      })
   }
-  async componentDidMount()
-  {
-    const response = await api.get('');
-
-    this.setState({Fornecedores : response.data});
-  }
-
+  useEffect(() =>{
+      fornecedoresGet();
+  })
   render()
   {
     const {Fornecedores} = this.state;
     return(
       <div>
-        <h1> fornecedores </h1>
-        {Fornecedores.map(Fornecedores =>(
-          <li key={Fornecedores.show.id}>
-            <h2>
-              <strong> Fornecedor : </strong>
-              {Fornecedores.show.name}
-            </h2>
-          </li>
+        <tbody>
+        {data.map(provider =>(
+          <tr key={provider.id}>
+            <td>{provider.id}</td>
+            <td>{provider.name}</td>
+            <td>{provider.document}</td>
+            <td>{provider.phone}</td>
+            <td>{provider.company}</td>
+            <td>
+              <button>Editar</button>
+              <button>Excluir</button>
+            </td>
+          </tr>
         ))}
+
+        </tbody>
       </div>
     )
   }
