@@ -1,12 +1,16 @@
 import './App.css';
+import React from 'react';
+
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+
 function App(){
 
   const baseUrl = 'https://localhost:44303/api/Providers';
 
   const [data,setData]=useState([]);
   
-  const fornecedoresGet = async() =>{
+  const ProvidersGet = async() =>{
       await axios.get(baseUrl)
       .then(response =>{
           setData(response.data);
@@ -15,13 +19,29 @@ function App(){
       })
   }
   useEffect(() =>{
-      fornecedoresGet();
+      ProvidersGet();
   })
   render()
   {
-    const {Fornecedores} = this.state;
+    const {Providers} = this.state;
     return(
       <div>
+        <div className='App'>
+          <header className='App-Header'>
+              <button className='btn btn-sucess'> Inserir novo Fornecedor</button>
+          </header>
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Company</th>
+                <th>Nanme</th>
+                <th>Document</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
         <tbody>
         {data.map(provider =>(
           <tr key={provider.id}>
@@ -36,7 +56,6 @@ function App(){
             </td>
           </tr>
         ))}
-
         </tbody>
       </div>
     )
