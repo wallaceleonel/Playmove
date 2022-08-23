@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 function App(){
@@ -17,13 +17,12 @@ function App(){
       }).catch(error =>{
           console.log(error);
       })
-  }
-  useEffect(() =>{
+    }
+
+    useEffect(() =>{
       ProvidersGet();
-  })
-  render()
-  {
-    const {Providers} = this.state;
+    })
+
     return(
       <div>
         <div className='App'>
@@ -51,15 +50,14 @@ function App(){
             <td>{provider.phone}</td>
             <td>{provider.company}</td>
             <td>
-              <button>Editar</button>
+              <button>Editar</button> {"  "}
               <button>Excluir</button>
             </td>
           </tr>
         ))}
         </tbody>
       </div>
-    )
+    );
   }
-}
 
 export default App;
