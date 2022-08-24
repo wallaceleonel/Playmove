@@ -7,7 +7,7 @@ export default function ProvisorList(){
     const[provider,setProvider] = useState([]);
     useEffect(() =>{
         api.get("api/provider").then(({data}) =>{
-            setProvider(data);
+            setProvider(data.provider);
         })
         console.log(provider);
 
