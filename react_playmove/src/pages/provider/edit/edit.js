@@ -1,9 +1,11 @@
 import React from "react";
 
+import Header from "../../../components/Header/header";
+
 function EditProvier(){
     return(
         <div>
-            <h1>Pag edit provider</h1>
+            <Header/>
         </div>
     )
 }

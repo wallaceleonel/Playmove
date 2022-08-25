@@ -1,9 +1,11 @@
 import React from "react";
 
+import Header from "../../../components/Header/header";
+
 function PostProvider(){
     return(
         <div>
-            <h1>Pag post provider</h1>
+            <Header/>
         </div>
     )
 }
