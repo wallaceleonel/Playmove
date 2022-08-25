@@ -29,7 +29,7 @@ function FeedCompany(){
     }
 
 
-    return(
+    return (
         <div>
 
             <HeaderMain />
@@ -58,11 +58,11 @@ function FeedCompany(){
 
                                     <div className="btn-edit" >
                                         <Link to={{ pathname: `/editCompany/${post.id}` }} >
-                                            <button>Edit</button>
+                                            <button>Editar</button>
                                         </Link>
                                     </div>
                                     <div className="btn-delete" >
-                                        <button onClick={() => deletePost(post.id) } >delete</button>
+                                        <button onClick={() => deletePost(post.id) } >Deletar</button>
                                     </div>
 
                                 </div>

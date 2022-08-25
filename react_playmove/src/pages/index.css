@@ -12,23 +12,33 @@ eader {
 
     height: 100px;
 }
+main .name{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-.logo h1 {
+    margin-top: 1rem;
+}
+.name h1 {
     font-family: Heebo;
     font-weight: 700;
+    font-size: 3.5rem;
     color: #29EBAA;
     cursor: pointer;
+    margin-left: 2rem;
 }
-.logo a {
-    text-decoration-line:none ;
+.options{
+    margin-top: 4rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
 }
-.btn-newPost button{
-    font-size: 1.2rem;
+.options button{
+    font-size: 3.2rem;
     font-family: Heebo;
     font-weight: 700;
-
-    background-color: #447CE2;
-    border: 0;
+    margin: 1.0rem;
+    background-color:#29EBAA ;
+    border: 1;
 
     color: #fff;
 
@@ -37,8 +47,6 @@ eader {
 
     cursor: pointer;
 }
-
-.btn-newPost button:hover {
-    transition: 0.2s;
-    background-color: #538af0;
+.options button:hover{
+    background-color: #29ebaa96;
 }

@@ -10,15 +10,16 @@ function HeaderMain() {
         <header>
             <div className="container">
                 <div className="logo" >
-                    <Link to={"/"}>
-                    <h1>Play Move List</h1>
+                    <a><Link to={"/"}>
+                    <h1>PLAYmove</h1>
                     </Link>
+                    </a>
                 </div>
 
                 <div className="btn-newPost" >
 
                     <Link to="/postCompany" >
-                        <button>Add new </button>
+                        <button>Adicionar Companhia </button>
                     </Link>
 
                 </div>

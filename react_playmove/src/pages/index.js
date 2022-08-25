@@ -2,20 +2,28 @@ import React from "react";
 
 import{Link} from "react-router-dom"
 
-import Header from "../components/Header/header";
+import './index.css'
 
 function index(){
     return(
         <div>
-            <Header>
-            <Link to="/feedCompany" >
-                <button>company</button>
-            </Link>
+             <div className="name">
+                 <h1>PLAYmove</h1>
+            </div>
+            <main>
+           
+
+           <div className="options">
+                <Link to="/feedCompany" >
+                    <button className="options"> Companhia </button>
+                </Link>
             
-            <Link to = "/feedProvider">
-                <button>provider</button>
-            </Link>
-            </Header>
+                <Link to = "/feedProvider">
+                    <button className="options">Fornecedores</button>
+                </Link>
+           </div>
+           
+           </main>
         </div>
     )
 }
