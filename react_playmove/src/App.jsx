@@ -22,11 +22,11 @@ export default function App(){
 
         <Route path="/feedCompany" component={FeedCompany}/>
         <Route path="/postCompany" component={PostCompany}/>
-        <Route path="/editCompany" component={EditCompany}/>
+        <Route path="/editCompany/:id" component={EditCompany}/>
 
         <Route path="/feedProvider" component={FeedProvider}/>
         <Route path="/postProvider" component={PostProvider}/>
-        <Route path="/editProvider" component={EditProvider}/>
+        <Route path="/editProvider/id" component={EditProvider}/>
       
       </Switch>
     </Router>

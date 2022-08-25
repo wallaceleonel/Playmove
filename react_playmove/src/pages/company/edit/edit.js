@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import {useHistory} from "react-router-dom"
+
+import {useHistory, useParams} from "react-router-dom"
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import Header from "../../../components/Header/header";
-
-
 import "./edit.css"
 
 const validationPost = yup.object().shape({
@@ -16,15 +15,14 @@ const validationPost = yup.object().shape({
     uf: yup.string().required("UF é obrigatório")
 })
 
-function EditCompany(){
+function EditCompany()
+{
+    const { id } = useParams()
 
     let history = useHistory()
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(validationPost)
-    })
-
-    const addPost = data => axios.post("https://localhost:44303/api/Companies", data)
+    
+    const addPost = data => axios.put(`https://localhost:44303/api/Companies/${id}`, data)
     .then(() => {
         console.log("Deu tudo certo")
         history.push("/")
@@ -32,6 +30,19 @@ function EditCompany(){
     .catch(() => {
         console.log("DEU ERRADO")
     })
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(validationPost)
+    })
+
+    useEffect(() => {
+        axios.get(`https://localhost:44303/api/Companies/${id}`)
+        .then((response) => {
+            reset(response.data)
+        })
+        
+    }, [])
+
     return(
         <div>
             <Header />
@@ -40,7 +51,7 @@ function EditCompany(){
 
             <div className="card-post" >
 
-                <h1>Edit company</h1>
+                <h1>Editar companhia</h1>
                 <div className="line-post" ></div>
 
                 <div className="card-body-post" >
@@ -48,30 +59,29 @@ function EditCompany(){
                 <form onSubmit={handleSubmit(addPost)} >
 
                 <div className="fields" >
-                    <label>Company</label>
-                    <input type="text" name="FantastName" {...register("FantasyName")} />
-                    <p className="error-message">{errors.FantasyName?.message}</p>
+                    <label>Companhia</label>
+                    <input type="text" name="fantastName" {...register("fantasyName")} />
+                    <p className="error-message">{errors.fantasyName?.message}</p>
                 </div>
 
                 <div className="fields" >
                     <label>Cnpj</label>
-                    <input type="number" name="Cnpj" {...register("Cnpj")} />
-                    <p className="error-message">{errors.Cnpj?.message}</p>
+                    <input type="number" name="cnpj" {...register("cnpj")} />
+                    <p className="error-message">{errors.cnpj?.message}</p>
                 </div>
 
                         <div className="fields">
                             <label>Uf</label>
-                            <select {...register("Uf", { required: true })}>
+                            <select {...register("uf", { required: true })}>
                                 <option value="AM">AM</option>
                                 <option value="SP">SP</option>
                                 <option value="MG">MG</option>
                                 <option value="DF">DF</option>
                             </select>
-                            <p className="error-message">{errors.content?.message}</p>
+                            <p className="error-message">{errors.uf?.message}</p>
                              </div>
-
                                  <div className="btn-post" >
-                                    <button type="submit" > Cadastrar </button>
+                                    <button type="submit" >Atualizar Cadastro </button>
                                 </div>
 
                         </form>
