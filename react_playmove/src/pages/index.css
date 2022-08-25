@@ -16,7 +16,6 @@ main .name{
     display: flex;
     justify-content: center;
     flex-direction: column;
-
     margin-top: 1rem;
 }
 .name h1 {
@@ -25,6 +24,7 @@ main .name{
     font-size: 3.5rem;
     color: #29EBAA;
     cursor: pointer;
+    margin-top: 0.5rem;
     margin-left: 2rem;
 }
 .options{

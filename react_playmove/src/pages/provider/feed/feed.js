@@ -4,7 +4,6 @@ import axios from "axios"
 import HeaderMain from "../../../components/HeaderMain/HeaderMain";
 import"../../company/feed/feed.css"
 import More from "../../../images/more.svg"
-import api from "../../../api/NetCoreApi";
 function FeedProvider(){
     const [ posts, setPosts ] = useState([])
 
