@@ -17,7 +17,7 @@ function HeaderMain() {
 
                 <div className="btn-newPost" >
 
-                    <Link to="/post" >
+                    <Link to="/postCompany" >
                         <button>Add new </button>
                     </Link>
 
