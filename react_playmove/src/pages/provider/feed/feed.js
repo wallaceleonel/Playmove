@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from "react";
 import{Link} from "react-router-dom"
 import axios from "axios"
-import HeaderMain from "../../../components/HeaderMain/HeaderMain";
-import"../../company/feed/feed.css"
+import HeaderMainProvider from "../../../components/HeaderMainProvider/headerMainProvider"
+import"./feed.css"
 import More from "../../../images/more.svg"
 function FeedProvider(){
     const [ posts, setPosts ] = useState([])
@@ -23,7 +23,7 @@ function FeedProvider(){
 
         axios.delete(`https://localhost:44303/api/Providers/${id}`)
 
-        setPosts(posts.filter(post => post._id !== id ))
+        setPosts(posts.filter(post => post.id !== id ))
 
     }
 
@@ -31,7 +31,7 @@ function FeedProvider(){
     return(
         <div>
 
-            <HeaderMain />
+            <HeaderMainProvider />
 
             <main>
 
@@ -44,26 +44,26 @@ function FeedProvider(){
                             <div className="card" key={key} >
 
                                 <header>
-                                    <h2>{post.Name}</h2>
+                                    <h2>{post.name}</h2>
                                     <img src={More} />
                                 </header>
 
                                 <div className="line"></div>
 
-                                <p>{post.Phone}</p>
-                                <p>{post.Document}</p>
-                                <p>{post.DateCredental}</p>
-                                <p>{post.Company}</p>
+                                <p>{post.phone}</p>
+                                <p>{post.document}</p>
+                                <p>{post.dateCredental}</p>
+                                <p>{post.CompanyId}</p>
 
                                 <div className="btns" >
 
                                     <div className="btn-edit" >
-                                        <Link to={{ pathname: `/edit/${post._id}` }} >
-                                            <button>Edit</button>
+                                        <Link to={{ pathname: `/editProvider/${post.id}` }} >
+                                            <button>Editar</button>
                                         </Link>
                                     </div>
                                     <div className="btn-delete" >
-                                        <button onClick={() => deletePost(post._id) } >delete</button>
+                                        <button onClick={() => deletePost(post.id) } >Deletar</button>
                                     </div>
 
                                 </div>

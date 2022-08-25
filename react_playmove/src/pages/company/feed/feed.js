@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import{Link} from 'react-router-dom'
 import axios from 'axios'
-import HeaderMain from '../../../components/HeaderMain/HeaderMain';
+import HeaderMain from '../../../components/HeaderMain/headerMain';
 import'./feed.css'
 import More from '../../../images/more.svg'
 function FeedCompany(){
