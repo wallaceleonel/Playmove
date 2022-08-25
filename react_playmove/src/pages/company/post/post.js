@@ -1,9 +1,13 @@
 import React from "react";
 
+import {Link} from "react-router-dom"
+
+import Header from "../../../components/Header/header";
+
 function PostCompany(){
     return(
         <div>
-            <h1>Pag post company</h1>
+            <Header/>
         </div>
     )
 }

@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom'
 
 import Back from '../../images/back-button.svg'
 
-
-
 function Header() {
     return (
-
         <header>
             <div className="container">
 
@@ -18,8 +15,6 @@ function Header() {
 
             </div>
         </header>
-
     )
 }
-
 export default Header
