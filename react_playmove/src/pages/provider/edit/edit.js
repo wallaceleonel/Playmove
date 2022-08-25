@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
-import {useHistory, useParams} from "react-router-dom"
+import {useHistory, useParams} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import * as yup from 'yup';
 
 import HeaderProvider from '../../../components/HeaderProvider/headerProvider';
-import "./edit.css"
+import './edit.css'
 
 const validationPost = yup.object().shape({
     Name: yup.string().required("O nome  é obrigatório").max(40, "O nome precisa ter menosde 40 caracteres"),
@@ -15,7 +15,7 @@ const validationPost = yup.object().shape({
     company: yup.string().required(" é obrigatório")
 })
 
-function EditCompany()
+function EditProvider()
 {
     const { id } = useParams()
 
@@ -60,8 +60,8 @@ function EditCompany()
 
                 <div className="fields" >
                     <label>Fornecedor</label>
-                    <input type="text" name="Name" {...register("Name")} />
-                    <p className="error-message">{errors.Name?.message}</p>
+                    <input type="text" name="name" {...register("name")} />
+                    <p className="error-message">{errors.name?.message}</p>
                 </div>
                 
                 <div className="fields" >
@@ -105,4 +105,4 @@ function EditCompany()
     )
 }
 
-export default EditCompany
+export default EditProvider

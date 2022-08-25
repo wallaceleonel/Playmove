@@ -26,7 +26,7 @@ export default function App(){
 
         <Route path="/feedProvider" component={FeedProvider}/>
         <Route path="/postProvider" component={PostProvider}/>
-        <Route path="/editProvider/id" component={EditProvider}/>
+        <Route path="/editProvider/:id" component={EditProvider}/>
       
       </Switch>
     </Router>
