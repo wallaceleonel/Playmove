@@ -50,10 +50,10 @@ function FeedProvider(){
 
                                 <div className="line"></div>
 
-                                <p>{post.phone}</p>
-                                <p>{post.document}</p>
-                                <p>{post.dateCredental}</p>
-                                <p>{post.CompanyId}</p>
+                                <p>Telefone:  {post.phone}</p>
+                                <p>Documento : {post.document}</p>
+                                <p>Resgistrado em : {post.dateCredential}</p>
+                                <p>Credenciado em : {post.companyId}</p>
 
                                 <div className="btns" >
 
