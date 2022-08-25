@@ -11,7 +11,7 @@ function HeaderMain() {
             <div className="container">
                 <div className="logo" >
                     <Link to={"/"}>
-                    <h1>Play Move Cadastros</h1>
+                    <h1>Play Move List</h1>
                     </Link>
                 </div>
 

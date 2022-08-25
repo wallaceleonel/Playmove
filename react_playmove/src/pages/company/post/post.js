@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import {useHistory} from "react-router-dom"
-
 import Header from "../../../components/Header/header";
 
 import { useForm } from 'react-hook-form'
@@ -11,9 +10,9 @@ import * as yup from "yup";
 import "./post.css"
 
 const validationPost = yup.object().shape({
-    FantasyName: yup.string().required("O título é obrigatório").max(40, "O título precisa ter menosde 40 caracteres"),
-    Cnpj: yup.string().required("A descrição é obrigatório").max(150, "A descrição precisa ter menosde 150 caracteres"),
-    Uf: yup.string().required("O conteúdo é obrigatório").max(500, "O conteúdo precisa ter menosde 500 caracteres")
+    fantasyName: yup.string().required("O nome  é obrigatório").max(40, "O nome precisa ter menosde 40 caracteres"),
+    cnpj: yup.number().required("Cnpj é obrigatório").max(14," precisa ter  14 caracteres").min(14,"Precisa ter 14 caracteres"),
+    uf: yup.string().required("UF é obrigatório")
 })
 
 function PostCompany(){
@@ -55,13 +54,18 @@ function PostCompany(){
 
                             <div className="fields" >
                                 <label>Cnpj</label>
-                                <input type="text" name="Cnpj" {...register("Cnpj")} />
+                                <input type="number" name="Cnpj" {...register("Cnpj")} />
                                 <p className="error-message">{errors.Cnpj?.message}</p>
                             </div>
 
-                            <div className="fields" >
+                            <div className="fields">
                                 <label>Uf</label>
-                                <textarea type="text" name="content" {...register("content")} ></textarea>
+                                <select {...register("Uf", { required: true })}>
+                                    <option value="AM">AM</option>
+                                    <option value="SP">SP</option>
+                                    <option value="MG">MG</option>
+                                    <option value="DF">DF</option>
+                                </select>
                                 <p className="error-message">{errors.content?.message}</p>
                             </div>
 

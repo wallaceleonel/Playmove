@@ -1,10 +1,9 @@
-import React,{useState,useEffect} from "react";
-import{Link} from "react-router-dom"
-import axios from "axios"
-import HeaderMain from "../../../components/HeaderMain/HeaderMain";
-import"./feed.css"
-import More from "../../../images/more.svg"
-import api from "../../../api/NetCoreApi";
+import React,{useState,useEffect} from 'react';
+import{Link} from 'react-router-dom'
+import axios from 'axios'
+import HeaderMain from '../../../components/HeaderMain/HeaderMain';
+import'./feed.css'
+import More from '../../../images/more.svg'
 function FeedCompany(){
 
     const [ posts, setPosts ] = useState([])
@@ -25,7 +24,7 @@ function FeedCompany(){
 
         axios.delete(`https://localhost:44303/api/Companies/${id}`)
 
-        setPosts(posts.filter(post => post._id !== id ))
+        setPosts(posts.filter(post => post.id !== id ))
 
     }
 
@@ -46,24 +45,24 @@ function FeedCompany(){
                             <div className="card" key={key} >
 
                                 <header>
-                                    <h2>{post.FantasyName}</h2>
+                                    <h2>{post.fantasyName}</h2>
                                     <img src={More} />
                                 </header>
 
                                 <div className="line"></div>
 
-                                <p>{post.Cnpj}</p>
-                                <p>{post.Uf}</p>
+                                <p>Cnpj {post.cnpj}</p>
+                                <p>Uf {post.uf}</p>
 
                                 <div className="btns" >
 
                                     <div className="btn-edit" >
-                                        <Link to={{ pathname: `/edit/${post._id}` }} >
+                                        <Link to={{ pathname: `/editCompany/${post.id}` }} >
                                             <button>Edit</button>
                                         </Link>
                                     </div>
                                     <div className="btn-delete" >
-                                        <button onClick={() => deletePost(post._id) } >delete</button>
+                                        <button onClick={() => deletePost(post.id) } >delete</button>
                                     </div>
 
                                 </div>

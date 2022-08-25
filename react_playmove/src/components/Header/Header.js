@@ -9,7 +9,7 @@ function Header() {
         <header>
             <div className="container">
 
-                <Link to="/" >
+                <Link to="/feedCompany" >
                     <img src={Back} style={{width: '50px'}} />
                 </Link>
 
