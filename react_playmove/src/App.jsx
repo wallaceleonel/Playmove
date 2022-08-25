@@ -3,13 +3,13 @@ import React from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import {Switch} from "react-router"
 
-import FeedCompany from './pages/company/feed'
-import PostCompany from './pages/company/post'
-import EditCompany from './pages/company/edit'
+import FeedCompany from './pages/company/feed/feed'
+import PostCompany from './pages/company/post/post'
+import EditCompany from './pages/company/edit/edit'
 
-import FeedProvider from './pages/provider/feed'
-import PostProvider from './pages/provider/post'
-import EditProvider from './pages/provider/edit'
+import FeedProvider from './pages/provider/feed/feed'
+import PostProvider from './pages/provider/post/post'
+import EditProvider from './pages/provider/edit/edit'
 
 import index from "./pages";
 
