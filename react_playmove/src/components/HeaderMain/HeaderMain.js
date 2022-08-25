@@ -10,7 +10,9 @@ function HeaderMain() {
         <header>
             <div className="container">
                 <div className="logo" >
+                    <Link to={"/"}>
                     <h1>Play Move Cadastros</h1>
+                    </Link>
                 </div>
 
                 <div className="btn-newPost" >
