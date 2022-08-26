@@ -18,7 +18,7 @@ const validationPost = yup.object().shape({
 export const useFantasyName = () =>{
     const [fanstasyName,setFantasyName] = useState([])
     useEffect(() => {
-            fetch("https://localhost:44303/api/Companies")
+            fetch("https://localhost:44303/api/Providers")
             .then((response) => response.json())
             .then((data) => setFantasyName(data))
         }, []);
@@ -91,18 +91,15 @@ function EditProvider()
                 
                 <div className="fields" >
                     <label>Data de registo</label>
-                    <input datatype="date" name="dateCredential" {...register("dateCredential")} />
-                    <p className="error-message">{errors.dateCredential?.message}</p>
+                    <input datatype="datetime" name="date" {...register("date")} />
+                    <p className="error-message">{errors.date?.message}</p>
+                </div>
+                <div className="fields" >
+                    <label>Numero Credencial da companhia</label>
+                    <input datatype="companyId" name="companyId" {...register("companyId")} />
+                    <p className="error-message">{errors.companyId?.message}</p>
                 </div>
 
-
-                        <div className="fields">
-                            <label>Companhia</label>
-                            <select {...register("fantasyName", { required: true })}>
-                                <option value="fantasyName">{fanstasyName}</option>
-                            </select>
-                            <p className="error-message">{errors.uf?.message}</p>
-                             </div>
                                  <div className="btn-post" >
                                     <button type="submit" >Atualizar Cadastro </button>
                                 </div>

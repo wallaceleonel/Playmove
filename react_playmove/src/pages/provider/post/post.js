@@ -9,9 +9,23 @@ import HeaderProvider from '../../../components/HeaderProvider/headerProvider'
 import { useEffect, useState } from "react";
 const validationPost = yup.object().shape({
     Name: yup.string().required("O nome  é obrigatório").max(40, "O nome precisa ter menosde 40 caracteres"),
-    Document: yup.number().required("Documento é obrigatório").max(14," precisa ter  14 caracteres").min(14,"Precisa ter 14 caracteres"),
-    companyId: yup.string().required("Selecionar  companhia")
+    Document: yup.number().required("Documento é obrigatório").max(14," precisa ter  14 caracteres").min(8,"Precisa ter 8 caracteres"),
+    companyId: yup.number().required("Selecionar  companhia").positive().integer(),
+    
 })
+(async () => {
+    try {
+      const schema = yup.object().shape({
+            rg: yup.string().test(
+                      'test-invalid-rg',
+                      'rg inválido',
+                      (rg) => rg.IsInvalid(rg))
+      })
+      await schema.validate({ rg: "122334456" })
+    } catch (err) {
+      throw new Error (err.message)
+    }
+    })()
 export const useFantasyName = () =>{
     const [fanstasyName,setFantasyName] = useState([])
     useEffect(() => {
@@ -91,20 +105,15 @@ function PostProvider(){
                     
                             <div className="fields" >
                                 <label> Data de registro </label>
-                                <input type="datetime" name="date" {...register("date")} />
+                                <input type="date" name="date" {...register("date")} />
                                 <p className="error-message">{errors.date?.message}</p>
                             </div>
-                            
-                            <div className="fields">
-                                <label> Companhia </label>
-                                
-                                <select {...register("fantasyName", { required: true})}>
-                                        <option value="fantasyName">{fanstasyName}</option>     
-                                </select>
-                                
-                                <p className="error-message">{errors.fantasyName?.message}</p>
+                        
+                            <div className="fields" >
+                                <label>Numero Credencial da companhia</label>
+                                <input datatype="companyId" name="companyId" {...register("companyId")} />
+                                <p className="error-message">{errors.companyId?.message}</p>
                             </div>
-                            
                             <div className="btn-post" >
                                 <button type="submit" > Cadastrar fornecedor </button>
                             </div>
