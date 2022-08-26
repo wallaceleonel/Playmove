@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CompanhiaProvisorApi.Data;
 using CompanhiaProvisorApi.Models;
-using System.Net;
+using CompanhiaProvisorApi.DTO;
 
 namespace CompanhiaProvisorApi.Controllers
 {
@@ -22,36 +22,26 @@ namespace CompanhiaProvisorApi.Controllers
             _context = context;
         }
 
-        /// <summary>
-        /// Buscar todas as companhias  disponíveis.
-        /// </summary>  
-        /// <returns>Retorna todas as companhias  disponíveis</returns>
-        /// <response code="200">Retorna todas as companhias  disponíveis</response>
-        
+        // GET: api/Companies
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Company>>> GetCompanys()
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompany()
         {
-          if (_context.Companys == null)
+          if (_context.Company == null)
           {
               return NotFound();
           }
-            return await _context.Companys.ToListAsync();
+            return await _context.Company.ToListAsync();
         }
 
-        /// <summary>
-        /// Buscar todas as companhias  disponíveis pelo ID.
-        /// </summary>  
-        /// <returns>Retorna todas as companhias  disponíveis</returns>
-        /// <response code="200">Retorna todas as companhias  disponíveis</response>
-        
+        // GET: api/Companies/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
-          if (_context.Companys == null)
+          if (_context.Company == null)
           {
               return NotFound();
           }
-            var company = await _context.Companys.FindAsync(id);
+            var company = await _context.Company.FindAsync(id);
 
             if (company == null)
             {
@@ -61,14 +51,10 @@ namespace CompanhiaProvisorApi.Controllers
             return company;
         }
 
-        /// <summary>
-        /// Edita  companhia informando o ID .
-        /// </summary>  
-        /// <returns>Retorna edição da companhia</returns>
-        /// <response code="200">Retorna dados da companhia atualizado</response>
-        
+        // PUT: api/Companies/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompany(int id, Company company)
+        public async Task<IActionResult> PutCompany(int id, CompanyDTO company)
         {
             if (id != company.Id)
             {
@@ -96,45 +82,42 @@ namespace CompanhiaProvisorApi.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Insere dados  para cadastro de  companhia.
-        /// </summary>  
-        /// <returns>Retorna dados da  companhia cadastrada. </returns>
-        /// <response code="200">Retorna dados da  companhia  cadastrada. </response>
-        
+        // POST: api/Companies
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Company>> PostCompany(Company company)
+        public async Task<ActionResult<ICollection<Company>>> PostCompany(CompanyDTO request)
         {
-          if (_context.Companys == null)
+          if (_context.Company == null)
           {
-              return Problem("Entity set 'DataContext.Companys'  is null.");
+                return NotFound();
           }
-            _context.Companys.Add(company);
+            var newComapany = new Company
+            {
+                FantasyName = request.FantasyName,
+                Cnpj = request.Cnpj,
+                Uf = request.Uf,
+            };
+            _context.Company.Add(newComapany);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCompany", new { id = company.Id }, company);
+            return CreatedAtAction("GetCompany", new { id = request.Id }, request);
         }
 
-        /// <summary>
-        /// Deleta dados da companhia.
-        /// </summary>  
-        /// <returns>Retorna aviso de remoção dos dados.</returns>
-        /// <response code="200">Retorna aviso de status de remoção de dados.</response>
-        
+        // DELETE: api/Companies/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {
-            if (_context.Companys == null)
+            if (_context.Company == null)
             {
                 return NotFound();
             }
-            var company = await _context.Companys.FindAsync(id);
+            var company = await _context.Company.FindAsync(id);
             if (company == null)
             {
                 return NotFound();
             }
 
-            _context.Companys.Remove(company);
+            _context.Company.Remove(company);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -142,7 +125,7 @@ namespace CompanhiaProvisorApi.Controllers
 
         private bool CompanyExists(int id)
         {
-            return (_context.Companys?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Company?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,5 +1,6 @@
-using CompanhiaProvisorApi.Data;
+﻿using CompanhiaProvisorApi.Data;
 using Microsoft.EntityFrameworkCore;
+//using CompanhiaProvisorApi.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,5 +34,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.MapCompanyEndpoints();
 
 app.Run();

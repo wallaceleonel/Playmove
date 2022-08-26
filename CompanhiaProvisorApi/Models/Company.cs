@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CompanhiaProvisorApi.Models
 {
@@ -9,8 +10,8 @@ namespace CompanhiaProvisorApi.Models
         public string FantasyName { get; set; } = string.Empty;
         [Required, MaxLength(2)]
         public string Uf { get; set; } = string.Empty;
-        [Required, MaxLength(14),MinLength(14)]
+        [Required, MaxLength(15),MinLength(14)]
         public int Cnpj { get; set; }
-        public List<Provider>? Providers { get; set; }
+        public ICollection<Provider> Providers { get; set; }
     }
 }

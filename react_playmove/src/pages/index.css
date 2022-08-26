@@ -38,7 +38,7 @@ main .name{
     font-weight: 700;
     margin: 1.0rem;
     background-color:#29EBAA ;
-    border: 1;
+    border: 0;
 
     color: #fff;
 
@@ -48,5 +48,5 @@ main .name{
     cursor: pointer;
 }
 .options button:hover{
-    background-color: #29ebaa96;
+    background-color: #29ebaa88;
 }

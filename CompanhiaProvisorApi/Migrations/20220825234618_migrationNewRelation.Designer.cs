@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanhiaProvisorApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220820130509_ProvidersEntity")]
-    partial class ProvidersEntity
+    [Migration("20220825234618_migrationNewRelation")]
+    partial class migrationNewRelation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace CompanhiaProvisorApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Cnpj")
-                        .HasMaxLength(14)
+                        .HasMaxLength(15)
                         .HasColumnType("int");
 
                     b.Property<string>("FantasyName")
@@ -47,7 +47,7 @@ namespace CompanhiaProvisorApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companys");
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("CompanhiaProvisorApi.Models.Provider", b =>
@@ -61,7 +61,7 @@ namespace CompanhiaProvisorApi.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateCredential")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Document")
@@ -80,7 +80,7 @@ namespace CompanhiaProvisorApi.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Providers");
+                    b.ToTable("Provider");
                 });
 
             modelBuilder.Entity("CompanhiaProvisorApi.Models.Provider", b =>

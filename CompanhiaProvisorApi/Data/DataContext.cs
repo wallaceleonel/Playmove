@@ -9,7 +9,7 @@ namespace CompanhiaProvisorApi.Data
         {
 
         }
-        public DbSet<Company> Companys { get; set; }
-        public DbSet<Provider> Providers { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<Provider> Provider { get; set; }
     }
 }

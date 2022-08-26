@@ -1,7 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CompanhiaProvisorApi.Data;
 using CompanhiaProvisorApi.Models;
+using CompanhiaProvisorApi.DTO;
 
 namespace CompanhiaProvisorApi.Controllers
 {
@@ -16,36 +22,26 @@ namespace CompanhiaProvisorApi.Controllers
             _context = context;
         }
 
-        /// <summary>
-        /// Buscar todos os fornecedores  disponíveis.
-        /// </summary>  
-        /// <returns>Retorna todos os fornecedores  disponíveis. </returns>
-        /// <response code="200">Retorna todaos os fornecedores  disponíveis. </response>
-        
+        // GET: api/Providers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Provider>>> GetProviders()
+        public async Task<ActionResult<IEnumerable<Provider>>> GetProvider()
         {
-          if (_context.Providers == null)
+          if (_context.Provider == null)
           {
               return NotFound();
           }
-            return await _context.Providers.ToListAsync();
+            return await _context.Provider.ToListAsync();
         }
 
-        /// <summary>
-        /// Buscar  o fornecedoror  atraves do ID.
-        /// </summary>  
-        /// <returns>Retorna fornecedor atraves pelo ID. </returns>
-        /// <response code="200">Retorna fornecedor do ID informado. </response>
-        
+        // GET: api/Providers/id
         [HttpGet("{id}")]
         public async Task<ActionResult<Provider>> GetProvider(int id)
         {
-          if (_context.Providers == null)
+          if (_context.Provider == null)
           {
               return NotFound();
           }
-            var provider = await _context.Providers.FindAsync(id);
+            var provider = await _context.Provider.FindAsync(id);
 
             if (provider == null)
             {
@@ -55,12 +51,8 @@ namespace CompanhiaProvisorApi.Controllers
             return provider;
         }
 
-        /// <summary>
-        /// Edita  fornecedor informando o ID.
-        /// </summary>  
-        /// <returns>Retorna edição do fornecedor.</returns>
-        /// <response code="200">Retorna dados do fornecedor atualizado.</response>
-        
+        // PUT: api/Providers/id
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProvider(int id, Provider provider)
         {
@@ -90,45 +82,44 @@ namespace CompanhiaProvisorApi.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Insere dados  para cadastro do fornecedor.
-        /// </summary>  
-        /// <returns>Retorna dados do fornecedor cadastrado. </returns>
-        /// <response code="200">Retorna dados do fornecedor cadastrado. </response>
-
+        // POST: api/Providers
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Provider>> PostProvider(Provider provider)
+        public async Task<ActionResult<ICollection<Provider>>> PostProvider(ProviderDTO request)
         {
-          if (_context.Providers == null)
-          {
-              return Problem("Entity set 'DataContext.Providers'  is null.");
-          }
-            _context.Providers.Add(provider);
+            var company = await _context.Company.FindAsync(request.CompanyId);
+            if (company == null)
+                return NotFound();
+
+            var newProvider = new Provider
+            {
+                Name = request.Name,
+                Document = request.Document,
+                Phone = request.Phone,
+                Company = company
+            };
+          
+            _context.Provider.Add(newProvider);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProvider", new { id = provider.Id }, provider);
+            return CreatedAtAction("GetProvider", new { id = request.CompanyId }, request);
         }
 
-        /// <summary>
-        /// Deleta dados do fornecedor.
-        /// </summary>  
-        /// <returns>Retorna aviso de remoção dos dados do fornecedor.</returns>
-        /// <response code="200">Retorna aviso de status de remoção de dados do fornecedor.</response>
-
+        // DELETE: api/Providers/id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProvider(int id)
         {
-            if (_context.Providers == null)
+            if (_context.Provider == null)
             {
                 return NotFound();
             }
-            var provider = await _context.Providers.FindAsync(id);
+            var provider = await _context.Provider.FindAsync(id);
             if (provider == null)
             {
                 return NotFound();
             }
 
-            _context.Providers.Remove(provider);
+            _context.Provider.Remove(provider);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -136,7 +127,7 @@ namespace CompanhiaProvisorApi.Controllers
 
         private bool ProviderExists(int id)
         {
-            return (_context.Providers?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Provider?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
