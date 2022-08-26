@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import axios from 'axios';
 
 import {useHistory, useParams} from 'react-router-dom'
@@ -15,8 +15,21 @@ const validationPost = yup.object().shape({
     company: yup.string().required(" é obrigatório")
 })
 
+export const useFantasyName = () =>{
+    const [fanstasyName,setFantasyName] = useState([])
+    useEffect(() => {
+            fetch("https://localhost:44303/api/Companies")
+            .then((response) => response.json())
+            .then((data) => setFantasyName(data))
+        }, []);
+        return{
+            fanstasyName
+        };
+    };
+
 function EditProvider()
 {
+    const {fanstasyName} = useFantasyName()
     const { id } = useParams()
 
     let history = useHistory()
@@ -85,8 +98,8 @@ function EditProvider()
 
                         <div className="fields">
                             <label>Companhia</label>
-                            <select {...register("company", { required: true })}>
-                                <option value="company">company.name</option>
+                            <select {...register("fantasyName", { required: true })}>
+                                <option value="fantasyName">{fanstasyName}</option>
                             </select>
                             <p className="error-message">{errors.uf?.message}</p>
                              </div>
