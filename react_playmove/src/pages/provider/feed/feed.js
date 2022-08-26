@@ -69,7 +69,6 @@ function FeedProvider(){
                                 </div>
                             </div>
                         )
-
                     })}
 
                     

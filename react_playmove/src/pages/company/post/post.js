@@ -34,11 +34,9 @@ function PostCompany(){
     return(
         <div>
             <Header />
-
             <main>
-
                 <div className="card-post" >
-
+                    
                     <h1>Adicionar Companhia</h1>
                     <div className="line-post" ></div>
 
@@ -66,11 +64,11 @@ function PostCompany(){
                                     <option value="MG">MG</option>
                                     <option value="DF">DF</option>
                                 </select>
-                                <p className="error-message">{errors.content?.message}</p>
+                                <p className="error-message">{errors.uf?.message}</p>
                             </div>
 
                             <div className="btn-post" >
-                                <button type="submit" > Cadastrar </button>
+                                <button type="submit" > Cadastrar companhia </button>
                             </div>
 
                         </form>
