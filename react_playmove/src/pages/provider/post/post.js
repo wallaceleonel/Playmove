@@ -16,12 +16,12 @@ const validationPost = yup.object().shape({
 (async () => {
     try {
       const schema = yup.object().shape({
-            rg: yup.string().test(
+            document: yup.string().test(
                       'test-invalid-rg',
-                      'rg inválido',
-                      (rg) => rg.IsInvalid(rg))
+                      'documento inválido',
+                      (document) => document.IsInvalid(document))
       })
-      await schema.validate({ rg: "122334456" })
+      await schema.validate({ document: "122334456" })
     } catch (err) {
       throw new Error (err.message)
     }

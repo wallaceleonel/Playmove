@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CompanhiaProvisorApi.Data;
 using CompanhiaProvisorApi.Models;
 using CompanhiaProvisorApi.DTO;
+using System.Data.Common;
 
 namespace CompanhiaProvisorApi.Controllers
 {
@@ -126,6 +127,11 @@ namespace CompanhiaProvisorApi.Controllers
         private bool CompanyExists(int id)
         {
             return (_context.Company?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        private bool CompanyRegistry(int Cnpj)
+        {
+
+            return (_context.Company?.Any(e => e.Cnpj == Cnpj)).GetValueOrDefault();
         }
     }
 }

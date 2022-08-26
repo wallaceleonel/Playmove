@@ -129,5 +129,10 @@ namespace CompanhiaProvisorApi.Controllers
         {
             return (_context.Provider?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        private bool ProviderRegistry(int Document)
+        {
+
+            return (_context.Provider?.Any(e => e.Document == Document)).GetValueOrDefault();
+        }
     }
 }
