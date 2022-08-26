@@ -90,10 +90,11 @@ function EditProvider()
                 </div>
                 
                 <div className="fields" >
-                    <label>Data de registo</label>
-                    <input datatype="datetime" name="date" {...register("date")} />
+                    <label> Data de registro </label>
+                    <input type="date" name="date" {...register("date")} />
                     <p className="error-message">{errors.date?.message}</p>
                 </div>
+
                 <div className="fields" >
                     <label>Numero Credencial da companhia</label>
                     <input datatype="companyId" name="companyId" {...register("companyId")} />
