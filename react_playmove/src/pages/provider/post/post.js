@@ -84,13 +84,13 @@ function PostProvider(){
                             </div>
 
                             <div className="fields" >
-                                <label> Documento </label>
+                                <label> RG/Cnpj </label>
                                 <input type="number" name="document" {...register("document")} />
                                 <p className="error-message">{errors.document?.message}</p>
                             </div>
                     
                             <div className="fields" >
-                                <label> Data </label>
+                                <label> Data de registro </label>
                                 <input type="datetime" name="date" {...register("date")} />
                                 <p className="error-message">{errors.date?.message}</p>
                             </div>
