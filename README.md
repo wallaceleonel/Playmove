@@ -27,14 +27,18 @@ Neste projeto usamos uma nova stack e a implementação de uma  arquitetura segu
  ### Front-end desenvolvido em react
 
   <img src= "img\front-end\frontForncedorCompanhia.PNG" align="center">
+  
   <img src= "img\front-end\feedCompanhia.PNG" align="center">
+  
   <img src="img\front-end\editarCompanhia.PNG" align="center">
+  
   <img src= "img\front-end\cadastroCompanhia.PNG" align="center">
 
-  <img src= "img\front-end\feedCompanhia.PNG" align="center">
-  <img src="img\front-end\editarCompanhia.PNG" align="center">
-  <img src="img\front-end\editarCompanhia.PNG" align="center">
-  <img src= "img\front-end\cadastroCompanhia.PNG" align="center">
+  <img src= "img\front-end\feedFornecedor.PNG" align="center">
+  
+  <img src="img\front-end\EditarFornecedor.PNG" align="center">
+
+  <img src="img\front-end\AdicionarForncedor.PNG" align="center">
 
  ## Rodando aplicação.
 

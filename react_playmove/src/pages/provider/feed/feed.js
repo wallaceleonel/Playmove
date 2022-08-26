@@ -52,8 +52,8 @@ function FeedProvider(){
 
                                 <p>Telefone:  {post.phone}</p>
                                 <p>Documento : {post.document}</p>
-                                <p>Resgistrado em : {post.dateCredential}</p>
-                                <p>Credenciado em : {post.companyId}</p>
+                                <p type="date"> Resgistrado em : {post.date}</p>
+                                <p>Numero Credencial da companhia : {post.companyId}</p>
 
                                 <div className="btns" >
 
