@@ -7,17 +7,29 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import HeaderProvider from '../../../components/HeaderProvider/headerProvider'
 import { useEffect, useState } from "react";
-import FeedCompany from "../../company/feed/feed";
-
 const validationPost = yup.object().shape({
     Name: yup.string().required("O nome  é obrigatório").max(40, "O nome precisa ter menosde 40 caracteres"),
     Document: yup.number().required("Documento é obrigatório").max(14," precisa ter  14 caracteres").min(14,"Precisa ter 14 caracteres"),
-    Company: yup.string().required("Selecionar  companhia")
+    companyId: yup.string().required("Selecionar  companhia")
 })
+export const useFantasyName = () =>{
+    const [fanstasyName,setFantasyName] = useState([])
+    useEffect(() => {
+            fetch("https://localhost:44303/api/Companies")
+            .then((response) => response.json())
+            .then((data) => setFantasyName(data))
+        }, []);
+        return{
+            fanstasyName
+        };
+    };
 
 function PostProvider(){
+
+   const{fanstasyName}=useFantasyName()
+
     let history = useHistory()
-    const [ setPosts ] = useState([])
+    const [setPosts ] = useState([])
     
     useEffect(() => {
         axios.get("https://localhost:44303/api/Providers")
@@ -31,7 +43,7 @@ function PostProvider(){
 
     }, [])
     
-    const { register, handleSubmit, formState: { errors, post } } = useForm({
+    const { register, handleSubmit, formState: { errors}} = useForm({
         resolver: yupResolver(validationPost)
     })
 
@@ -43,7 +55,6 @@ function PostProvider(){
     .catch(() => {
         console.log("DEU ERRADO")
     })
-
     return (
 
         <div>        
@@ -83,14 +94,18 @@ function PostProvider(){
                                 <input type="datetime" name="date" {...register("date")} />
                                 <p className="error-message">{errors.date?.message}</p>
                             </div>
-
+                            
                             <div className="fields">
                                 <label> Companhia </label>
+                                
                                 <select {...register("fantasyName", { required: true})}>
-                                    <option value="fanstasyName">{}</option>
+                                        <option value="fantasyName">{fanstasyName}</option>     
                                 </select>
+                                
                                 <p className="error-message">{errors.fantasyName?.message}</p>
                             </div>
+
+                            
 
                             <div className="btn-post" >
                                 <button type="submit" > Cadastrar fornecedor </button>
@@ -105,7 +120,6 @@ function PostProvider(){
             </main>
         
         </div>
-        
     )
 }
 
