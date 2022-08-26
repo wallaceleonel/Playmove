@@ -87,31 +87,31 @@ function PostProvider(){
 
                             <div className="fields" >
                                 <label>  Fornecedor </label>
-                                <input type="text" name="name" {...register("name")} />
+                                <input type="text" name="name" {...register("name")} placeholder="EX : Wallace LTDA" />
                                 <p className="error-message">{errors.name?.message}</p>
                             </div>
 
                             <div className="fields" >
                                 <label> Telefone </label>
-                                <input type="tel" name="phone" {...register("phone")} />
+                                <input type="tel" name="phone" {...register("phone")} placeholder=" EX :11 912345678"/>
                                 <p className="error-message">{errors.phone?.message}</p>
                             </div>
 
                             <div className="fields" >
                                 <label> RG/Cnpj </label>
-                                <input type="number" name="document" {...register("document")} />
+                                <input type="number" name="document" {...register("document")} placeholder =" EX :234556708" />
                                 <p className="error-message">{errors.document?.message}</p>
                             </div>
                     
                             <div className="fields" >
                                 <label> Data de registro </label>
-                                <input type="date" name="date" {...register("date")} />
+                                <input type="date" name="date" {...register("date")} placeholder ="EX: 22/05/2021 13:20"/>
                                 <p className="error-message">{errors.date?.message}</p>
                             </div>
                         
                             <div className="fields" >
                                 <label>Numero Credencial da companhia</label>
-                                <input datatype="companyId" name="companyId" {...register("companyId")} />
+                                <input datatype="companyId" name="companyId" {...register("companyId")} placeholder=" EX :  2" />
                                 <p className="error-message">{errors.companyId?.message}</p>
                             </div>
                             <div className="btn-post" >
