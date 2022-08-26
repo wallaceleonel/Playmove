@@ -104,9 +104,7 @@ function PostProvider(){
                                 
                                 <p className="error-message">{errors.fantasyName?.message}</p>
                             </div>
-
                             
-
                             <div className="btn-post" >
                                 <button type="submit" > Cadastrar fornecedor </button>
                             </div>
